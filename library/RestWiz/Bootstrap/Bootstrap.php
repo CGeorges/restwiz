@@ -9,7 +9,7 @@ class RestWiz_Bootstrap_Bootstrap {
 
     /**
      * Sets action controller. This is done automatically in Bootstrap.
-     * @param $controllerName
+     * @param $controllerName string
      * @throws Exception
      */
     public function setController($controllerName)
