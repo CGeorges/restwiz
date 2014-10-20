@@ -43,5 +43,10 @@ class RestWiz_Controller_Abstract {
         return false;
     }
 
+    public function __toString()
+    {
+        return get_called_class();
+    }
+
 
 }
