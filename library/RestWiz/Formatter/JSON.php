@@ -1,5 +1,5 @@
 <?php
-class RestWiz_View_JSON {
+class RestWiz_Formatter_JSON {
 
     public function __construct()
     {
