@@ -1,7 +1,11 @@
 <?php
+/* Modify the constants bellow to match your project.
+ * TODO: Move this to a settings.ini file
+ */
 define('LIBRARY_PATH','library/RestWiz');
 define('APPLICATION_PATH','demo_api');
 define('DEFAULT_CONTROLLER', 'cars');
+/* Do not modify bellow this line*/
 
 require_once LIBRARY_PATH . '/Bootstrap/Bootstrap.php';
 
