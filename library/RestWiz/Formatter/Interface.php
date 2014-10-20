@@ -2,12 +2,13 @@
 interface FormatterInterface
 {
     /**
-     * @param $content string|array|int
-     */
-    public function __construct($content);
-
-    /**
      * @return string
      */
     public function getFormattedOutput();
+
+    /**
+     * @param $content mixed
+     * @return mixed
+     */
+    public function setRawContent($content);
 }

@@ -51,9 +51,6 @@ class RestWiz_Bootstrap_Bootstrap {
             throw new Exception('Resource ' . $resource_name . ' doesn\'t exists in current controller');
         }
 
-
-        $raw_output = $this->controller->$resource_name();
-
         //Require formatter interface
         require_once LIBRARY_PATH . '/Formatter/Interface.php';
 
@@ -65,9 +62,13 @@ class RestWiz_Bootstrap_Bootstrap {
             $formatter_name = 'RestWiz_Formatter_' . $_GET['format'];
             require_once LIBRARY_PATH . '/Formatter/' . $_GET['format'] . '.php';
         }
+        /** @var $formatter FormatterInterface */
+        $formatter = new $formatter_name();
 
 
-        $formatter = new $formatter_name($raw_output);
+        $raw_output = $this->controller->$resource_name();
+
+        $formatter->setRawContent($raw_output);
         echo $formatter->getFormattedOutput();
 
 

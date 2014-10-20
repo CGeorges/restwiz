@@ -3,7 +3,12 @@ class RestWiz_Formatter_JSON implements FormatterInterface {
 
     public $content = null;
 
-    public function __construct($content)
+    public function getFormattedOutput()
+    {
+        return json_encode($this->content);
+    }
+
+    public function setRawContent($content)
     {
         if (empty($content))
         {
@@ -12,8 +17,4 @@ class RestWiz_Formatter_JSON implements FormatterInterface {
         $this->content = $content;
     }
 
-    public function getFormattedOutput()
-    {
-        return json_encode($this->content);
-    }
 }

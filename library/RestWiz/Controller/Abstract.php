@@ -5,11 +5,11 @@ class RestWiz_Controller_Abstract {
      * @var null|RestWiz_Controller_Abstract
      */
     private $controller = null;
+    /**
+     * @var null|FormatterInterface
+     */
+    private $formatter = null;
 
-    public function __construct()
-    {
-
-    }
 
     /**
      * Sets current controller instance inside controller so it can be accessed in requests.
@@ -29,6 +29,14 @@ class RestWiz_Controller_Abstract {
     }
 
     /**
+     * Set returned format. This format is being set in Bootstrap at initialization time.
+     * @param $formatter FormatterInterface
+     */
+    public function setFormatter($formatter)
+    {
+        $this->formatter = $formatter;
+    }
+    /**
      * Return current controller instance.
      * For use of outside controller classes.
      * @return bool|RestWiz_Controller_Abstract
@@ -42,6 +50,16 @@ class RestWiz_Controller_Abstract {
 
         return false;
     }
+
+    /**
+     * Get current formatter instance
+     * @return FormatterInterface|null
+     */
+    public function getFormatter()
+    {
+        return $this->formatter;
+    }
+
 
     public function __toString()
     {
