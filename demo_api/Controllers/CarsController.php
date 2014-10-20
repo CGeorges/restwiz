@@ -10,9 +10,18 @@ class Cars extends RestWiz_Controller_Abstract {
     public function getControllerNameResource()
     {
         /*
-         * In a resource you should always return the output and not echo/print/var_dump/etc. This is because
-         * the output will be formatted by the framework in the requested format JSON/XML/more to be added.
+         * Totally optional, this shows you how you can manipulate the formatter before it gets outputed, if you
+         * ever need it
          */
-        return array(1,2,3,4,5);
+        $formatter = $this->getFormatter();
+        $formatter->prependRawContent('HEADER<br />');
+        $formatter->appendRawContent('<br />FOOTER');
+
+
+        /*
+         * Once the output is final, use method $this->output to send it to user.
+         * The output will be formatted by the framework in the requested format JSON/XML/more to be added.
+         */
+        $this->output(array(1,2,3,4,5));
     }
 }
