@@ -27,6 +27,7 @@ class RestWiz_Controller_Abstract {
 
     /**
      * Return current controller instance.
+     * For use of outside controller classes.
      * @return bool|RestWiz_Controller_Abstract
      */
     public function getController()
