@@ -1,4 +1,8 @@
 RestWiz
 =======
 
-A simple, OOP, REST API Framework in PHP. Serves as a working foundation for any API you want to build on PHP.
+A simple, light-weight, OOP and secure API framework for PHP.
+
+''Documentation to be added soon as we reach a stable version''
+
+Current version 0.0.1
