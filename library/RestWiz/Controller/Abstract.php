@@ -11,6 +11,8 @@ class RestWiz_Controller_Abstract {
     private $formatter = null;
 
 
+    private $output = null;
+
     /**
      * Sets current controller instance inside controller so it can be accessed in requests.
      * @param $controller - Instance of current controller
@@ -36,6 +38,15 @@ class RestWiz_Controller_Abstract {
     {
         $this->formatter = $formatter;
     }
+
+    /**
+     * @param $output mixed
+     */
+    public function output($output)
+    {
+        $this->output = $output;
+    }
+
     /**
      * Return current controller instance.
      * For use of outside controller classes.
@@ -60,6 +71,13 @@ class RestWiz_Controller_Abstract {
         return $this->formatter;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getOutput()
+    {
+        return $this->output;
+    }
 
     public function __toString()
     {
