@@ -5,7 +5,7 @@
 define('LIBRARY_PATH','library/RestWiz');
 define('APPLICATION_PATH','demo_api');
 define('DEFAULT_CONTROLLER', 'cars');
-/* Do not modify bellow this line*/
+/* Do not modify bellow this line. Unless you know what you are doing. */
 
 require_once LIBRARY_PATH . '/Bootstrap/Bootstrap.php';
 
