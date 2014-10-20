@@ -9,20 +9,20 @@ class RestWiz_Bootstrap_Bootstrap {
 
     /**
      * Sets action controller. This is done automatically in Bootstrap.
-     * @param $controllerName string
+     * @param $controller_name string
      * @throws Exception
      */
-    public function setController($controllerName)
+    public function setController($controller_name)
     {
-        if (!file_exists(APPLICATION_PATH . '/Controllers/' . $controllerName . 'Controller.php'))
+        if (!file_exists(APPLICATION_PATH . '/Controllers/' . $controller_name . 'Controller.php'))
         {
-            throw new Exception($controllerName . 'Controller.php doesn\'t exist!');
+            throw new Exception($controller_name . 'Controller.php doesn\'t exist!');
         }
 
         require_once LIBRARY_PATH . '/Controller/Abstract.php';
-        require_once APPLICATION_PATH . '/Controllers/' . ucfirst($controllerName) . 'Controller.php';
+        require_once APPLICATION_PATH . '/Controllers/' . ucfirst($controller_name) . 'Controller.php';
 
-        $this->controller = new $controllerName();
+        $this->controller = new $controller_name();
         $this->controller->setController($this->controller);
     }
 
@@ -38,16 +38,36 @@ class RestWiz_Bootstrap_Bootstrap {
         return false;
     }
 
+    /**
+     * Executes resource inside controller and outputs formatted data
+     * @param $resource string
+     * @throws Exception
+     */
     public function executeResource($resource)
     {
-        $resourceName = $resource . 'Resource';
-        if (!method_exists($this->controller, $resourceName ))
+        $resource_name = $resource . 'Resource';
+        if (!method_exists($this->controller, $resource_name ))
         {
-            throw new Exception('Resource ' . $resourceName . ' doesn\'t exists in current controller');
+            throw new Exception('Resource ' . $resource_name . ' doesn\'t exists in current controller');
         }
 
 
-        echo $this->controller->$resourceName();
+        $raw_output = $this->controller->$resource_name();
+
+        if (empty($_GET['format']))
+        {
+            $formatter_name = 'RestWiz_Formatter_' . DEFAULT_OUTPUT_FORMAT;
+            require_once LIBRARY_PATH . '/Formatter/' . DEFAULT_OUTPUT_FORMAT . '.php';
+        } else {
+            $formatter_name = 'RestWiz_Formatter_' . $_GET['format'];
+            require_once LIBRARY_PATH . '/Formatter/' . $_GET['format'] . '.php';
+        }
+
+
+        $formatter = new $formatter_name($raw_output);
+        echo $formatter->getFormattedOutput();
+
+
     }
 
 }
