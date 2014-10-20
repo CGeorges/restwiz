@@ -1,5 +1,6 @@
 <?php
-class RestWiz_Formatter_JSON implements FormatterInterface {
+require_once LIBRARY_PATH . '/Formatter/Abstract.php';
+class RestWiz_Formatter_JSON extends Formatter_Abstract {
 
     public $content = null;
 
@@ -7,14 +8,4 @@ class RestWiz_Formatter_JSON implements FormatterInterface {
     {
         return json_encode($this->content);
     }
-
-    public function setRawContent($content)
-    {
-        if (empty($content))
-        {
-            return false;
-        }
-        $this->content = $content;
-    }
-
 }

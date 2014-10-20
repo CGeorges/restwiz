@@ -8,7 +8,16 @@ interface FormatterInterface
 
     /**
      * @param $content mixed
-     * @return mixed
      */
     public function setRawContent($content);
+
+    /**
+     * @param $content string|int
+     */
+    public function prependContent($content);
+
+    /**
+     * @param $content string|int
+     */
+    public function appendContent($content);
 }
