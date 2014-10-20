@@ -7,7 +7,7 @@ class Cars extends RestWiz_Controller_Abstract {
     /*
      * Resources should always be public and end with "Resource"
      */
-    public function getControllerResource()
+    public function getControllerNameResource()
     {
         /*
          * In a resource you should always return the output and not echo/print/var_dump/etc. This is because
