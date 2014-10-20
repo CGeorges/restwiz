@@ -51,6 +51,7 @@ class RestWiz_Bootstrap_Bootstrap {
             throw new Exception('Resource ' . $resource_name . ' doesn\'t exists in current controller');
         }
 
+
         //Require formatter interface
         require_once LIBRARY_PATH . '/Formatter/Interface.php';
 
@@ -59,14 +60,25 @@ class RestWiz_Bootstrap_Bootstrap {
             $formatter_name = 'RestWiz_Formatter_' . DEFAULT_OUTPUT_FORMAT;
             require_once LIBRARY_PATH . '/Formatter/' . DEFAULT_OUTPUT_FORMAT . '.php';
         } else {
+            if(!file_exists(LIBRARY_PATH . '/Formatter/' . $_GET['format'] . '.php'))
+            {
+                throw new Exception('Requested format is not available');
+            }
             $formatter_name = 'RestWiz_Formatter_' . $_GET['format'];
             require_once LIBRARY_PATH . '/Formatter/' . $_GET['format'] . '.php';
         }
         /** @var $formatter FormatterInterface */
         $formatter = new $formatter_name();
+        if(class_implements($formatter)['FormatterInterface'] != 'FormatterInterface')
+        {
+            throw new Exception('Invalid formatter set');
+        }
+        $this->controller->setFormatter($formatter);
 
+        //Execute the controller resource
+        $this->controller->$resource_name();
 
-        $raw_output = $this->controller->$resource_name();
+        $raw_output = $this->controller->getOutput();
 
         $formatter->setRawContent($raw_output);
         echo $formatter->getFormattedOutput();
