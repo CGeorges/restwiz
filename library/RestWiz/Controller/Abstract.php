@@ -1,5 +1,5 @@
 <?php
-class Restwiz_View_Abstract_JSON {
+class RestWiz_Controller_Abstract {
 
     public function __construct()
     {
