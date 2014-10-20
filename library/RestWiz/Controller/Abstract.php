@@ -1,6 +1,9 @@
 <?php
 class RestWiz_Controller_Abstract {
 
+    /**
+     * @var null|RestWiz_Controller_Abstract
+     */
     private $controller = null;
 
     public function __construct()
