@@ -1,6 +1,12 @@
 <?php
+/*
+ * A RestWiz controller should always extend the abstract controller RestWiz_Controller_Abstract
+ */
 class Cars extends RestWiz_Controller_Abstract {
 
+    /*
+     * Resources should always be public and end with "Resource"
+     */
     public function getControllerResource()
     {
         /*
