@@ -23,6 +23,7 @@ class RestWiz_Bootstrap_Bootstrap {
         require_once APPLICATION_PATH . '/Controllers/' . ucfirst($controllerName) . 'Controller.php';
 
         $this->controller = new $controllerName();
+        $this->controller->setController($this->controller);
     }
 
     /**
@@ -35,6 +36,18 @@ class RestWiz_Bootstrap_Bootstrap {
             return $this->controller;
 
         return false;
+    }
+
+    public function executeResource($resource)
+    {
+        $resourceName = $resource . 'Resource';
+        if (!method_exists($this->controller, $resourceName ))
+        {
+            throw new Exception('Resource ' . $resourceName . ' doesn\'t exists in current controller');
+        }
+
+
+        echo $this->controller->$resourceName();
     }
 
 }

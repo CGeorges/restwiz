@@ -18,3 +18,8 @@ if (!empty($_GET['controller'])) {
     $controllerName = DEFAULT_CONTROLLER;
 }
 $bootstrap->setController(strtolower($controllerName));
+
+if (!empty($_GET['resource']))
+{
+    $bootstrap->executeResource($_GET['resource']);
+}
