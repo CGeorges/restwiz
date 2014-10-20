@@ -19,7 +19,8 @@ class RestWiz_Bootstrap_Bootstrap {
             throw new Exception($controllerName . 'Controller.php doesn\'t exist!');
         }
 
-        require_once APPLICATION_PATH . '/Controllers/' . $controllerName . 'Controller.php';
+        require_once LIBRARY_PATH . '/Controller/Abstract.php';
+        require_once APPLICATION_PATH . '/Controllers/' . ucfirst($controllerName) . 'Controller.php';
 
         $this->controller = new $controllerName();
     }
