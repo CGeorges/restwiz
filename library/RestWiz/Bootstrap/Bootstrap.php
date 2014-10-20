@@ -54,6 +54,9 @@ class RestWiz_Bootstrap_Bootstrap {
 
         $raw_output = $this->controller->$resource_name();
 
+        //Require formatter interface
+        require_once LIBRARY_PATH . '/Formatter/Interface.php';
+
         if (empty($_GET['format']))
         {
             $formatter_name = 'RestWiz_Formatter_' . DEFAULT_OUTPUT_FORMAT;

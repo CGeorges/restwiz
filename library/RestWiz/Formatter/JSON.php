@@ -1,11 +1,8 @@
 <?php
-class RestWiz_Formatter_JSON {
+class RestWiz_Formatter_JSON implements FormatterInterface {
 
     public $content = null;
 
-    /**
-     * @param $content string|array
-     */
     public function __construct($content)
     {
         if (empty($content))
