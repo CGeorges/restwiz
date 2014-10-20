@@ -7,6 +7,21 @@ interface FormatterInterface
     public function getFormattedOutput();
 
     /**
+     * @return mixed
+     */
+    public function getRawOutput();
+
+    /**
+     * @return string
+     */
+    public function getHeader();
+
+    /**
+     * @return string
+     */
+    public function getFooter();
+
+    /**
      * @param $content mixed
      */
     public function setRawContent($content);
@@ -14,10 +29,10 @@ interface FormatterInterface
     /**
      * @param $content string|int
      */
-    public function prependContent($content);
+    public function prependRawContent($content);
 
     /**
      * @param $content string|int
      */
-    public function appendContent($content);
+    public function appendRawContent($content);
 }

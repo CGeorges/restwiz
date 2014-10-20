@@ -1,11 +1,28 @@
 <?php
 class Formatter_Abstract implements FormatterInterface {
 
-    public $content = null;
+    private $content = null;
+    private $header = null;
+    private $footer = null;
 
     public function getFormattedOutput()
     {
+        return $this->header . $this->content . $this->footer;
+    }
+
+    public function getRawOutput()
+    {
         return $this->content;
+    }
+
+    public function getHeader()
+    {
+        return $this->header;
+    }
+
+    public function getFooter()
+    {
+        return $this->footer;
     }
 
     public function setRawContent($content)
@@ -17,13 +34,13 @@ class Formatter_Abstract implements FormatterInterface {
         $this->content = $content;
     }
 
-    public function prependContent($content)
+    public function prependRawContent($content)
     {
-        $this->content = $content . $this->content;
+        $this->header = $content;
     }
 
-    public function appendContent($content)
+    public function appendRawContent($content)
     {
-        $this->content .= $content;
+        $this->footer = $content;
     }
 }
