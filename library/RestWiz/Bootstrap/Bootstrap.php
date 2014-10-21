@@ -67,12 +67,15 @@ class RestWiz_Bootstrap_Bootstrap {
             $formatter_name = 'RestWiz_Formatter_' . $_GET['format'];
             require_once LIBRARY_PATH . '/Formatter/' . $_GET['format'] . '.php';
         }
-        /** @var $formatter FormatterInterface */
-        $formatter = new $formatter_name();
-        if(class_implements($formatter)['FormatterInterface'] != 'FormatterInterface')
+      
+        if(!class_exists($formatter_name))
         {
             throw new Exception('Invalid formatter set');
         }
+        
+        /** @var $formatter FormatterInterface */
+        $formatter = new $formatter_name();
+        
         $this->controller->setFormatter($formatter);
 
         //Execute the controller resource
